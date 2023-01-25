@@ -18,6 +18,15 @@ function compilaSass() {
 }
 gulp.task('sass', compilaSass);
 
+function pluginsCSS(){
+  return gulp.src(['./css/lib/aos.css', './css/lib/swiper.min.css'])
+  .pipe(concat('plugins.css'))
+  .pipe(gulp.dest('css/'))
+  .pipe(browserSync.stream())
+}
+
+gulp.task('plugincss', pluginsCSS);
+
 function gulpJs() {
   return gulp.src('js/scripts/*.js')
   .pipe(concat('all.js'))
@@ -30,6 +39,13 @@ function gulpJs() {
 }
 gulp.task('alljs', gulpJs);
 
+function pluginsJs(){
+  return gulp.src(['./js/lib/aos.min.js', './js/lib/swiper.min.js'])
+  .pipe(concat('plugins.js'))
+  .pipe(gulp.dest('js/'))
+  .pipe(browserSync.stream())
+}
+gulp.task('pluginjs', pluginsJs);
 
 function browser(){
   browserSync.init({
@@ -42,9 +58,11 @@ gulp.task('browser-sync', browser)
 
 function watch(){
   gulp.watch('scss/*.scss', compilaSass);
+  gulp.watch('css/lib/*.css', pluginsCSS)
   gulp.watch('*.html').on('change', browserSync.reload);
-  gulp.watch('js/scripts/*js', gulpJs)
+  gulp.watch('js/scripts/*.js', gulpJs)
+  gulp.watch('js/lib/*.js', pluginsJs)
 }
 
 gulp.task('watch', watch)
-gulp.task('default', gulp.parallel('watch', 'browser-sync', 'sass', 'alljs'))
+gulp.task('default', gulp.parallel('watch', 'browser-sync', 'sass', 'plugincss', 'alljs', 'pluginjs'))
