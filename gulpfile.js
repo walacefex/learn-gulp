@@ -10,7 +10,8 @@ function compilaSass() {
     overrideBrowserslist: ['last 2 versions'],
     cascade: false
   }))
-  .pipe(gulp.dest('css/'));
+  .pipe(gulp.dest('css/'))
+  .pipe(browserSync.stream());
 }
 
 gulp.task('sass', compilaSass);
@@ -26,6 +27,8 @@ gulp.task('browser-sync', browser)
 
 function watch(){
   gulp.watch('scss/*.scss', compilaSass);
+  gulp.watch('*.html').on('change', browserSync.reload);
 }
 
-gulp.task('default', watch)
+gulp.task('watch', watch)
+gulp.task('default', gulp.parallel('watch', 'browser-sync'))
