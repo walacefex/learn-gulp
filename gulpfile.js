@@ -13,4 +13,10 @@ function compilaSass() {
   .pipe(gulp.dest('css/'));
 }
 
-gulp.task('default', compilaSass);
+gulp.task('sass', compilaSass);
+
+function watch(){
+  gulp.watch('scss/*.scss', compilaSass);
+}
+
+gulp.task('default', watch)
