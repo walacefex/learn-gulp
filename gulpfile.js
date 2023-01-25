@@ -3,6 +3,7 @@ const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer')
 const browserSync = require('browser-sync').create()
 
+// Compiling Sass, adding autoprefixer and refreshing the page
 function compilaSass() {
   return gulp.src('scss/*.scss')
   .pipe(sass({ outputStyle: 'compressed'}))
