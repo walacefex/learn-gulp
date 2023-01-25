@@ -1,6 +1,1 @@
-"use strict";
-
-{
-  console.log('Buttons');
-}
-var modal = 'modal';
+"use strict";console.log("Buttons");var modal="modal";
