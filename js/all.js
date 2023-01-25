@@ -1,2 +1,6 @@
-{console.log('Buttons')}
-{console.log('Modal teste')}
+"use strict";
+
+{
+  console.log('Buttons');
+}
+var modal = 'modal';

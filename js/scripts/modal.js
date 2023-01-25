@@ -1,1 +1,1 @@
-{console.log('Modal teste')}
+const modal = 'modal'
